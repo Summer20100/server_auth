@@ -50,13 +50,14 @@ class UserService {
   // LOGIN
   async login(email, password) {
     const user = await pool.query(queries.checkIsUserByEmail, [email]);
-    if (!user) {
+    if (!user.rows[0] || !user.rows[0].password) {
       throw ApiError.BadRequest(`Пользоватедь с таким email не найден`);
     }
-
-    const isPassEquels = await bcrypt.compare(password, user.rows[0].password);
-    if (!isPassEquels) {
-      throw ApiError.BadRequest(`Неверный пароль`);
+    
+    const isPassEqual = await bcrypt.compare(password, user.rows[0].password);
+    
+    if (!isPassEqual) {
+        throw ApiError.BadRequest(`Неверный пароль`);
     }
 
     const userDto = new UserDto(user.rows[0]);
