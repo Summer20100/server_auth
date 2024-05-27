@@ -3,17 +3,17 @@ const values = require("./_secret.js");
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  // user: values.DB_USER,
-  // host: values.DB_HOST,
-  // database: values.DB_NAME,
-  // password: values.DB_PASS,
-  // port: values.DB_PORT,
+  user: values.DB_USER,
+  host: values.DB_HOST,
+  database: values.DB_NAME,
+  password: values.DB_PASS,
+  port: values.DB_PORT,
 
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
-  port: process.env.DB_PORT,
+  // user: process.env.DB_USER,
+  // host: process.env.DB_HOST,
+  // database: process.env.DB_NAME,
+  // password: process.env.DB_PASS,
+  // port: process.env.DB_PORT,
 
 });
 
